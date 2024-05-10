@@ -1,0 +1,11 @@
+.card{
+  max-width: 400px;
+  min-height: 550px;
+}
+
+.card-img-custom{
+  min-width: 300px;
+  max-height: 300px;
+}
+
+

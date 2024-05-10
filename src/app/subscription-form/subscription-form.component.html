@@ -1,0 +1,61 @@
+<div class="card shadow-effect">
+  <div class="card-body">
+    <div class="text-center mt-3 mb-5">
+      <h3>SUSCRIBIRSE</h3>
+      <p class="m-auto subs-text">Suscribete para mantenerte al dia con las novedades publicadas</p>
+
+      <div class="alert alert-danger mt-3" *ngIf="isEmailError">
+        Ese correo ya se encuentra registrado
+      </div>
+
+      <div class="alert alert-info mt-3" *ngIf="isUserSubscribed">
+        Gracias por subscribirte!
+      </div>
+
+      <form #subForm = ngForm (ngSubmit)="onSubmit(subForm.value)" class="form-inline mb-5 mt-5 d-flex" *ngIf="!isUserSubscribed">
+
+        <div class="form-group col-md-5 flex-fill mx-1">
+          <input
+          type="text"
+          class="form-control shadow-effect"
+          placeholder="Tu nombre"
+          #Name = 'ngModel'
+          name="name"
+          ngModel
+          required
+          [ngClass]="{'is-invalid' : Name.touched && Name.invalid}"
+            >
+          <div class="text-danger" *ngIf="Name.touched && Name.invalid">
+            <span *ngIf="Name.errors?.['required']">Debes ingresar un nombre</span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-5 flex-fill mx-1">
+          <input
+          type="text"
+          class="form-control shadow-effect"
+          placeholder="Correo electronico"
+          #Email = 'ngModel'
+          name="email"
+          ngModel
+          required
+          email
+          [ngClass]="{'is-invalid' : Email.touched && Email.invalid}"
+          >
+          <div class="text-danger" *ngIf="Email.touched && Email.invalid">
+            <span *ngIf="Email.errors?.['required']">Debes ingresar un email</span>
+            <span *ngIf="Email.errors?.['email']">Ingresa un email valido</span>
+          </div>
+        </div>
+
+
+        <div class="col-md-2">
+          <button class="btn btn-success btn-block btn-theme mt-1" [disabled]="subForm.invalid">SUSCRIBIRSE</button>
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+</div>
